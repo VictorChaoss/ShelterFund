@@ -15,24 +15,25 @@ export default function Header() {
         </div>
         
         <div className="hidden md:flex flex-1 items-center justify-center">
-          <div className="relative w-full max-w-lg">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Search className="h-4 w-4 text-muted-foreground" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search campaigns or coins"
-              className="h-10 w-full rounded-full border border-border bg-background pl-10 pr-4 text-sm text-primary placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-            />
-          </div>
+          <nav className="flex items-center gap-6">
+            <Link href="/rescues" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              Adopt a Rescue
+            </Link>
+            <Link href="/explore" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              Explore
+            </Link>
+            <Link href="/docs" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              Docs
+            </Link>
+          </nav>
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/launch"
-            className="hidden rounded-full bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90 md:block"
+          <Link 
+            href="/rescues" 
+            className="hidden rounded-full bg-accent px-4 py-2 text-sm font-bold text-accent-foreground transition-colors hover:bg-accent/90 sm:block shadow-lg shadow-accent/20"
           >
-            Launch Coin
+            Sponsor a Dog
           </Link>
           <div className="wallet-button-container">
             <WalletMultiButton style={{ backgroundColor: 'transparent', border: '1px solid hsl(var(--border))', borderRadius: '9999px', height: '40px', fontSize: '14px', fontWeight: '500', color: 'hsl(var(--primary))' }} />
