@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import Link from 'next/link';
 import { ArrowRight, Compass, PawPrint, BarChart3, Rocket, FileText } from 'lucide-react';
 

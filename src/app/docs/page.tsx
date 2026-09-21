@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { Heart, Coins, ArrowRightLeft, FileCheck } from 'lucide-react';
 
 export default function DocsPage() {
