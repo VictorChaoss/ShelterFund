@@ -14,7 +14,6 @@ model Campaign {
   goal      Float
   raised    Float    @default(0)
   image     String
-  url       String   @default("https://www.gofundme.com")
   createdAt DateTime @default(now())
   tokens    Token[]
   claims    Claim[]

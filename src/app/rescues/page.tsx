@@ -67,7 +67,11 @@ export default function RescuesPage() {
 
                 <div className="flex flex-col gap-2 mt-6">
                   <a 
-                    href={camp.url} 
+                    href={
+                      camp.id === 'gfm-luna' ? "https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life" :
+                      camp.id === 'gfm-maxwheel' ? "https://www.gofundme.com/f/emergency-vet-fund-help-save-my-dog-from-a-serious-dental-a" :
+                      "https://www.gofundme.com/f/help-save-my-dog-luna"
+                    }
                     target="_blank" 
                     rel="noreferrer"
                     className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/50 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary"
