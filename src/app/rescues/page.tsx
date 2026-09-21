@@ -3,17 +3,21 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Loader2, ExternalLink, ShieldCheck, Rocket } from 'lucide-react';
+import { Loader2, ExternalLink, ShieldCheck, Rocket, HeartPulse, PawPrint } from 'lucide-react';
 import Link from 'next/link';
+
+const CAMPAIGN_URLS: Record<string, string> = {
+  'gfm-luna': 'https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life',
+  'gfm-maxwheel': 'https://www.gofundme.com/f/emergency-vet-fund-help-save-my-dog-from-a-serious-dental-a',
+  'gfm-edisurg': 'https://www.gofundme.com/f/help-save-my-dog-luna',
+};
 
 export default function RescuesPage() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCampaign, setSelectedCampaign] = useState<string | null>(null);
   const [claimedLocal, setClaimedLocal] = useState<any>({});
 
   useEffect(() => {
-    // Check localStorage for tokens created in this session
     const claimed = JSON.parse(localStorage.getItem('claimedTokens') || '{}');
     setClaimedLocal(claimed);
 
@@ -26,84 +30,124 @@ export default function RescuesPage() {
   }, []);
 
   if (loading) {
-    return <div className="flex h-screen items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-accent" /></div>;
+    return (
+      <div className="flex h-[80vh] flex-col items-center justify-center gap-4">
+        <Loader2 className="h-8 w-8 animate-spin text-accent" />
+        <p className="text-sm text-muted-foreground">Loading rescues...</p>
+      </div>
+    );
   }
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-8 lg:px-6">
-      <div className="mb-12">
-        <h1 className="text-3xl font-medium tracking-tight text-primary">Adopt a Rescue</h1>
-        <p className="mt-2 text-muted-foreground">Launch a token to become the exclusive sponsor for a dog in need. 4% of all volume goes directly to their campaign.</p>
-      </div>
+    <div className="relative">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-accent/5 blur-[120px]" />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {campaigns.map((camp) => {
-          const isClaimed = (camp.tokens && camp.tokens.length > 0) || !!claimedLocal[camp.id];
-          const token = isClaimed ? (claimedLocal[camp.id] || camp.tokens[0]) : null;
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-8 lg:px-6">
+        {/* Header */}
+        <div className="mb-12 animate-fade-up">
+          <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-xs font-medium text-accent mb-4">
+            <HeartPulse className="h-3.5 w-3.5" />
+            {campaigns.length} Rescues Available
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">Adopt a Rescue</h1>
+          <p className="mt-3 text-muted-foreground max-w-lg">
+            Each dog below has a real, active GoFundMe. Pick one, launch their exclusive token, and 4% of all volume goes directly to their campaign.
+          </p>
+        </div>
 
-          return (
-            <div key={camp.id} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-accent/50 flex flex-col">
+        {/* Campaign Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {campaigns.map((camp, i) => {
+            const isClaimed = (camp.tokens && camp.tokens.length > 0) || !!claimedLocal[camp.id];
+            const token = isClaimed ? (claimedLocal[camp.id] || camp.tokens[0]) : null;
+            const gofundmeUrl = CAMPAIGN_URLS[camp.id] || 'https://www.gofundme.com';
+
+            return (
               <div 
-                className="absolute inset-0 z-0 opacity-20 transition-opacity group-hover:opacity-30"
-                style={{ backgroundImage: `url(${camp.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              />
-              
-              <div className="relative z-10 flex flex-1 flex-col p-6">
-                <div className="mb-auto">
-                  <span className="mb-3 inline-block rounded-full bg-secondary px-3 py-1 text-xs font-medium text-primary">
-                    {camp.shelter}
-                  </span>
-                  <h3 className="text-xl font-bold text-primary">{camp.name}</h3>
-                </div>
-
-                <div className="mt-8 space-y-3">
-                  <div className="flex justify-between text-sm font-medium">
-                    <span className="text-green-500">${camp.raised.toLocaleString()} Raised</span>
-                    <span className="text-muted-foreground">Goal: ${camp.goal.toLocaleString()}</span>
-                  </div>
+                key={camp.id} 
+                className={`animate-fade-up delay-${(i+1)*100} group relative overflow-hidden rounded-2xl border bg-card/50 transition-all flex flex-col ${
+                  isClaimed 
+                    ? 'border-green-500/20' 
+                    : 'border-border hover:border-accent/40 hover-glow'
+                }`}
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={camp.image} 
+                    alt={camp.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   
-                  <div className="h-3 w-full overflow-hidden rounded-full bg-secondary">
-                    <div 
-                      className="h-full bg-accent transition-all duration-1000"
-                      style={{ width: `${Math.min((camp.raised / camp.goal) * 100, 100)}%` }}
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-2 mt-6">
-                  <a 
-                    href={
-                      camp.id === 'gfm-luna' ? "https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life" :
-                      camp.id === 'gfm-maxwheel' ? "https://www.gofundme.com/f/emergency-vet-fund-help-save-my-dog-from-a-serious-dental-a" :
-                      "https://www.gofundme.com/f/help-save-my-dog-luna"
-                    }
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/50 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    View Original Fundraiser
-                  </a>
-
+                  {/* Status Badge */}
                   {isClaimed ? (
-                    <div className="flex flex-col items-center justify-center gap-1 rounded-xl border border-green-500/20 bg-green-500/10 py-3 text-sm font-medium text-green-500 mt-2">
-                      <ShieldCheck className="h-4 w-4" />
-                      <span>Sponsored by <strong>${token.ticker}</strong></span>
+                    <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-green-500/20 border border-green-500/30 px-3 py-1 text-xs font-bold text-green-400 backdrop-blur-sm">
+                      <ShieldCheck className="h-3 w-3" />
+                      Sponsored
                     </div>
                   ) : (
-                    <Link 
-                      href={`/launch?campaignId=${camp.id}`}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3 text-sm font-bold text-accent-foreground transition-colors hover:bg-accent/90 mt-2 shadow-lg shadow-accent/20"
-                    >
-                      <Rocket className="h-4 w-4" />
-                      Launch Coin to Support
-                    </Link>
+                    <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-accent/20 border border-accent/30 px-3 py-1 text-xs font-bold text-accent backdrop-blur-sm animate-pulse">
+                      <PawPrint className="h-3 w-3" />
+                      Needs Sponsor
+                    </div>
                   )}
                 </div>
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="mb-auto">
+                    <span className="text-xs font-medium text-muted-foreground">{camp.shelter}</span>
+                    <h3 className="mt-1 text-lg font-bold text-primary leading-snug">{camp.name}</h3>
+                  </div>
+
+                  {/* Progress */}
+                  <div className="mt-6 space-y-2">
+                    <div className="flex justify-between text-xs font-medium">
+                      <span className="text-green-400">${camp.raised.toLocaleString()} raised</span>
+                      <span className="text-muted-foreground">Goal: ${camp.goal.toLocaleString()}</span>
+                    </div>
+                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                      <div 
+                        className="h-full rounded-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-1000"
+                        style={{ width: `${Math.max(Math.min((camp.raised / camp.goal) * 100, 100), 2)}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="mt-6 flex flex-col gap-2">
+                    <a 
+                      href={gofundmeUrl}
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-border py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      View on GoFundMe
+                    </a>
+
+                    {isClaimed ? (
+                      <div className="flex items-center justify-center gap-2 rounded-xl border border-green-500/20 bg-green-500/5 py-2.5 text-xs font-bold text-green-400">
+                        <ShieldCheck className="h-3.5 w-3.5" />
+                        Sponsored by ${token.ticker}
+                      </div>
+                    ) : (
+                      <Link 
+                        href={`/launch?campaignId=${camp.id}`}
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3 text-sm font-bold text-accent-foreground transition-all hover:bg-accent/90 glow-accent"
+                      >
+                        <Rocket className="h-4 w-4" />
+                        Launch Coin to Support
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
