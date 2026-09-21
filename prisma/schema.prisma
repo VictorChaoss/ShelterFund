@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Campaign {
@@ -13,18 +13,31 @@ model Campaign {
   shelter   String
   goal      Float
   raised    Float    @default(0)
-  image     String?
-  url       String?
-  tokens    Token[]
+  image     String
   createdAt DateTime @default(now())
+  tokens    Token[]
+  claims    Claim[]
 }
 
 model Token {
-  mintAddress String   @id
+  id          String   @id @default(cuid())
+  mintAddress String   @unique
   name        String
   ticker      String
-  campaignId  String
-  campaign    Campaign @relation(fields: [campaignId], references: [id])
   volumeUsd   Float    @default(0)
   createdAt   DateTime @default(now())
+  
+  campaignId  String
+  campaign    Campaign @relation(fields: [campaignId], references: [id])
+}
+
+model Claim {
+  id          String   @id @default(cuid())
+  amountUsdc  Float
+  walletTo    String
+  txSignature String   @unique
+  createdAt   DateTime @default(now())
+  
+  campaignId  String
+  campaign    Campaign @relation(fields: [campaignId], references: [id])
 }
