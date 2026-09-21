@@ -11,7 +11,9 @@ import { Rocket, Loader2, Heart, ArrowLeft } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function LaunchPage() {
+import { Suspense } from 'react';
+
+function LaunchPageContent() {
   const { publicKey, sendTransaction, signTransaction } = useWallet();
   const { connection } = useConnection();
   const searchParams = useSearchParams();
@@ -163,10 +165,9 @@ export default function LaunchPage() {
       // Partial sign by the mint keypair
       transaction.partialSign(mintKeypair);
 
-      // We won't actually send it to the network in this MVP demo to avoid devnet errors for the user,
-      // but we will simulate success and register the token in our DB!
-      // const signature = await sendTransaction(transaction, connection);
-      // await connection.confirmTransaction(signature);
+      // Send the transaction to Solana Devnet!
+      const signature = await sendTransaction(transaction, connection);
+      await connection.confirmTransaction(signature);
       
       // Save Token to Database
       await fetch('/api/tokens', {
@@ -305,5 +306,13 @@ export default function LaunchPage() {
         </button>
       </form>
     </div>
+  );
+}
+
+export default function LaunchPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-accent" /></div>}>
+      <LaunchPageContent />
+    </Suspense>
   );
 }
