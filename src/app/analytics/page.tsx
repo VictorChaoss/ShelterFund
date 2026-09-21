@@ -67,7 +67,7 @@ export default function AnalyticsPage() {
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-medium text-muted-foreground">Total Trading Volume</h3>
-            <Activity className="h-4 w-4 text-amber-500" />
+            <Activity className="h-4 w-4 text-rose-500" />
           </div>
           <div className="mt-4 flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">${stats.totalVolume.toLocaleString()}</span>
@@ -78,7 +78,7 @@ export default function AnalyticsPage() {
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-medium text-muted-foreground">Tokens Launched</h3>
-            <Rocket className="h-4 w-4 text-orange-500" />
+            <Rocket className="h-4 w-4 text-pink-500" />
           </div>
           <div className="mt-4 flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">{stats.totalTokens}</span>

@@ -94,7 +94,7 @@ export default function ExplorePage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 font-mono text-primary flex items-center gap-2">
-                        <TrendingUp className="h-4 w-4 text-amber-500" />
+                        <TrendingUp className="h-4 w-4 text-rose-500" />
                         ${token.volumeUsd.toLocaleString()}
                       </td>
                       <td className="px-6 py-4 font-mono font-bold text-green-500">

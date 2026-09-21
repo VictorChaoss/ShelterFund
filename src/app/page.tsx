@@ -10,7 +10,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-accent/5 blur-[120px]" />
         <div className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-accent/3 blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-orange-500/3 blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-pink-500/3 blur-[100px]" />
       </div>
 
       {/* ══ HERO ══ */}
@@ -49,7 +49,7 @@ export default function Home() {
           <PawPrint className="absolute top-20 left-[15%] h-6 w-6 text-accent/10 animate-float" />
           <PawPrint className="absolute top-40 right-[18%] h-8 w-8 text-accent/8 animate-float-slow delay-200" />
           <PawPrint className="absolute bottom-32 left-[10%] h-5 w-5 text-accent/6 animate-float delay-500" />
-          <PawPrint className="absolute bottom-20 right-[12%] h-7 w-7 text-orange-400/8 animate-float-slow delay-300" />
+          <PawPrint className="absolute bottom-20 right-[12%] h-7 w-7 text-pink-400/8 animate-float-slow delay-300" />
         </div>
       </section>
 
@@ -57,9 +57,9 @@ export default function Home() {
       <section className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-6">
         <div className="grid gap-4 sm:grid-cols-3">
           {[
-            { step: '01', title: 'Pick a Dog', desc: 'Browse verified GoFundMe campaigns for dogs needing surgery, wheelchairs, or emergency care.', icon: HeartPulse, color: 'text-orange-400' },
-            { step: '02', title: 'Launch a Token', desc: 'Deploy an SPL Token-2022 coin with a locked 4% transfer fee that routes to ShelterFund.', icon: Rocket, color: 'text-amber-400' },
-            { step: '03', title: 'Save a Life', desc: 'As the coin trades, fees accumulate and get routed directly to the dog\'s GoFundMe campaign.', icon: Zap, color: 'text-yellow-400' },
+            { step: '01', title: 'Pick a Dog', desc: 'Browse verified GoFundMe campaigns for dogs needing surgery, wheelchairs, or emergency care.', icon: HeartPulse, color: 'text-rose-400' },
+            { step: '02', title: 'Launch a Token', desc: 'Deploy a coin on PumpSwap with creator fees routed to ShelterFund.', icon: Rocket, color: 'text-pink-400' },
+            { step: '03', title: 'Save a Life', desc: 'As the coin trades, creator fees accumulate and get routed directly to the dog\'s GoFundMe campaign.', icon: Zap, color: 'text-fuchsia-400' },
           ].map((item, i) => (
             <div key={i} className={`animate-fade-up delay-${(i+1)*100} group relative rounded-2xl border border-border bg-card/50 p-8 transition-all hover:border-accent/30 hover-glow`}>
               <span className="font-mono text-xs text-muted-foreground/50">{item.step}</span>
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="grid gap-4 sm:grid-cols-6">
           {/* Rescue Pool - Large */}
           <Link href="/rescues" className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 transition-all hover:border-accent/40 hover-glow sm:col-span-4 sm:h-[320px]">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-orange-500/5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-pink-500/5" />
             <div className="relative flex h-full flex-col justify-between p-8">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent mb-6">
@@ -109,7 +109,7 @@ export default function Home() {
           <Link href="/explore" className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 transition-all hover:border-border/80 hover-glow sm:col-span-3 sm:h-[260px]">
             <div className="relative flex h-full flex-col justify-between p-8">
               <div>
-                <TrendingUp className="h-8 w-8 text-amber-400 mb-4 transition-transform group-hover:scale-110" />
+                <TrendingUp className="h-8 w-8 text-rose-400 mb-4 transition-transform group-hover:scale-110" />
                 <h3 className="text-xl font-bold text-primary mb-2">Live Leaderboard</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">Track the volume and impact of every token launched on the platform.</p>
               </div>
