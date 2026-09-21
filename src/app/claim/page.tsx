@@ -3,7 +3,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ShieldCheck, Mail, Twitter, Wallet, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Mail, Link, Wallet, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function ClaimPortal() {
   const [step, setStep] = useState(1);
@@ -65,8 +65,8 @@ export default function ClaimPortal() {
               <div className="space-y-4">
                 <button onClick={() => setStep(3)} className="flex w-full items-center justify-between rounded-xl border border-border bg-background p-4 transition-colors hover:border-accent hover:bg-secondary/30">
                   <div className="flex items-center gap-3">
-                    <Twitter className="h-5 w-5 text-[#1DA1F2]" />
-                    <span className="font-medium text-primary">Verify with Official Twitter</span>
+                    <Link className="h-5 w-5 text-[#1DA1F2]" />
+                    <span className="font-medium text-primary">Verify with Official Link</span>
                   </div>
                   <ArrowRight className="h-4 w-4 text-muted-foreground" />
                 </button>
