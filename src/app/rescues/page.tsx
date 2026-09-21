@@ -61,14 +61,26 @@ export default function RescuesPage() {
                 </div>
               </div>
 
-              {/* Receipts Drawer Toggle */}
-              <button 
-                onClick={() => setSelectedCampaign(selectedCampaign === camp.id ? null : camp.id)}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background py-3 text-sm font-medium text-primary transition-colors hover:bg-secondary/50"
-              >
-                <ShieldCheck className="h-4 w-4 text-accent" />
-                {selectedCampaign === camp.id ? "Hide Receipts" : "View On-Chain Receipts"}
-              </button>
+              <div className="flex flex-col gap-2 mt-6">
+                <a 
+                  href={camp.url} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-accent/20 bg-accent/10 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Research Shelter
+                </a>
+
+                {/* Receipts Drawer Toggle */}
+                <button 
+                  onClick={() => setSelectedCampaign(selectedCampaign === camp.id ? null : camp.id)}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background py-3 text-sm font-medium text-primary transition-colors hover:bg-secondary/50"
+                >
+                  <ShieldCheck className="h-4 w-4 text-green-500" />
+                  {selectedCampaign === camp.id ? "Hide Receipts" : "View On-Chain Receipts"}
+                </button>
+              </div>
 
               {/* Expanding Receipts Drawer */}
               {selectedCampaign === camp.id && (
