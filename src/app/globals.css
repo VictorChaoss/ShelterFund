@@ -4,25 +4,37 @@
 
 @layer base {
   :root {
-    --background: 330 10% 4%;
-    --foreground: 330 10% 98%;
-    --card: 330 10% 7%;
-    --card-foreground: 330 10% 98%;
-    --popover: 330 10% 7%;
-    --popover-foreground: 330 10% 98%;
-    --primary: 330 10% 98%;
-    --primary-foreground: 330 10% 4%;
-    --secondary: 330 10% 12%;
-    --secondary-foreground: 330 10% 98%;
-    --muted: 330 10% 12%;
-    --muted-foreground: 330 5% 65%;
-    --accent: 330 90% 60%;
-    --accent-foreground: 0 0% 98%;
+    /* Warm dark background with slight brown undertone */
+    --background: 25 15% 4%;
+    --foreground: 35 20% 96%;
+    
+    /* Warm card surface */
+    --card: 25 12% 7%;
+    --card-foreground: 35 20% 96%;
+    
+    --popover: 25 12% 7%;
+    --popover-foreground: 35 20% 96%;
+    
+    --primary: 35 20% 96%;
+    --primary-foreground: 25 15% 4%;
+    
+    /* Warm secondary */
+    --secondary: 25 10% 12%;
+    --secondary-foreground: 35 20% 96%;
+    
+    --muted: 25 10% 12%;
+    --muted-foreground: 25 8% 55%;
+    
+    /* Warm Amber — shelter / rescue / hope */
+    --accent: 32 95% 52%;
+    --accent-foreground: 25 15% 4%;
+    
     --destructive: 0 80% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 330 10% 14%;
-    --input: 330 10% 12%;
-    --ring: 330 90% 60%;
+    
+    --border: 25 10% 13%;
+    --input: 25 10% 12%;
+    --ring: 32 95% 52%;
     --radius: 1rem;
   }
 }
@@ -51,8 +63,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(330 90% 60% / 0.15); }
-  50% { box-shadow: 0 0 40px hsl(330 90% 60% / 0.3); }
+  0%, 100% { box-shadow: 0 0 20px hsl(32 95% 52% / 0.15); }
+  50% { box-shadow: 0 0 40px hsl(32 95% 52% / 0.3); }
 }
 
 @keyframes shimmer {
@@ -80,14 +92,12 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes border-rotate {
-  0% { --angle: 0deg; }
-  100% { --angle: 360deg; }
-}
-
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
 }
 
 /* Utility animation classes */
@@ -98,6 +108,7 @@
 .animate-fade-up { animation: fade-up 0.6s ease-out both; }
 .animate-fade-in { animation: fade-in 0.4s ease-out both; }
 .animate-scale-in { animation: scale-in 0.5s ease-out both; }
+.animate-heartbeat { animation: heartbeat 2s ease-in-out infinite; }
 
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
@@ -112,7 +123,7 @@
 /* ═══════════════════════════════════════════ */
 
 .glass {
-  background: hsl(330 10% 7% / 0.6);
+  background: hsl(25 12% 7% / 0.7);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
@@ -120,47 +131,47 @@
 .glass-card {
   background: linear-gradient(
     135deg,
-    hsl(330 10% 10% / 0.8),
-    hsl(330 10% 6% / 0.9)
+    hsl(25 12% 10% / 0.8),
+    hsl(25 12% 6% / 0.9)
   );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 /* ═══════════════════════════════════════════ */
-/* GLOW EFFECTS                               */
+/* GLOW EFFECTS — warm amber                  */
 /* ═══════════════════════════════════════════ */
 
 .glow-accent {
   box-shadow:
-    0 0 20px hsl(330 90% 60% / 0.1),
-    0 0 60px hsl(330 90% 60% / 0.05);
+    0 0 20px hsl(32 95% 52% / 0.12),
+    0 0 60px hsl(32 95% 52% / 0.06);
 }
 
 .glow-accent-strong {
   box-shadow:
-    0 0 20px hsl(330 90% 60% / 0.2),
-    0 0 60px hsl(330 90% 60% / 0.1),
-    0 0 100px hsl(330 90% 60% / 0.05);
+    0 0 20px hsl(32 95% 52% / 0.2),
+    0 0 60px hsl(32 95% 52% / 0.1),
+    0 0 100px hsl(32 95% 52% / 0.05);
 }
 
 .hover-glow:hover {
   box-shadow:
-    0 0 30px hsl(330 90% 60% / 0.15),
-    0 0 80px hsl(330 90% 60% / 0.08);
+    0 0 30px hsl(32 95% 52% / 0.15),
+    0 0 80px hsl(32 95% 52% / 0.08);
 }
 
 /* ═══════════════════════════════════════════ */
-/* GRADIENT TEXT                              */
+/* GRADIENT TEXT — warm amber to soft gold     */
 /* ═══════════════════════════════════════════ */
 
 .gradient-text {
   background: linear-gradient(
     135deg,
-    hsl(330 90% 70%) 0%,
-    hsl(330 10% 98%) 40%,
-    hsl(330 10% 98%) 60%,
-    hsl(280 80% 70%) 100%
+    hsl(32 95% 60%) 0%,
+    hsl(40 90% 70%) 30%,
+    hsl(35 20% 96%) 60%,
+    hsl(25 80% 65%) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -170,9 +181,9 @@
 .gradient-text-accent {
   background: linear-gradient(
     90deg,
-    hsl(330 90% 60%),
-    hsl(300 80% 65%),
-    hsl(330 90% 60%)
+    hsl(32 95% 52%),
+    hsl(45 90% 60%),
+    hsl(32 95% 52%)
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -188,9 +199,9 @@
 .shimmer {
   background: linear-gradient(
     90deg,
-    hsl(330 10% 12%) 0%,
-    hsl(330 10% 18%) 50%,
-    hsl(330 10% 12%) 100%
+    hsl(25 10% 12%) 0%,
+    hsl(25 10% 18%) 50%,
+    hsl(25 10% 12%) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
@@ -218,14 +229,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(330 10% 4%);
+  background: hsl(25 15% 4%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(330 10% 18%);
+  background: hsl(25 10% 18%);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(330 90% 60% / 0.5);
+  background: hsl(32 95% 52% / 0.5);
 }

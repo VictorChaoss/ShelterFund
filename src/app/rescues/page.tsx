@@ -110,7 +110,7 @@ export default function RescuesPage() {
                     </div>
                     <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
                       <div 
-                        className="h-full rounded-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-1000"
+                        className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-400 transition-all duration-1000"
                         style={{ width: `${Math.max(Math.min((camp.raised / camp.goal) * 100, 100), 2)}%` }}
                       />
                     </div>
