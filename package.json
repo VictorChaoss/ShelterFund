@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate && prisma db push --accept-data-loss && node prisma/seed-vercel.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@solana/spl-token": "^0.4.15",
