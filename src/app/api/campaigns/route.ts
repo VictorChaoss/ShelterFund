@@ -5,9 +5,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// Force dynamic so Vercel doesn't cache it aggressively
-export const dynamic = 'force-dynamic';
-
 export async function GET() {
   try {
     const campaigns = await prisma.campaign.findMany({

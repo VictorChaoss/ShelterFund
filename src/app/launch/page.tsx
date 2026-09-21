@@ -169,17 +169,10 @@ function LaunchPageContent() {
       const signature = await sendTransaction(transaction, connection);
       await connection.confirmTransaction(signature);
       
-      // Save Token to Database
-      await fetch('/api/tokens', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          mintAddress: mintKeypair.publicKey.toBase58(),
-          name: formData.name,
-          ticker: formData.ticker,
-          campaignId: campaignId
-        })
-      });
+      // Save Token to LocalStorage to bypass Vercel serverless read-only restrictions!
+      const claimed = JSON.parse(localStorage.getItem('claimedTokens') || '{}');
+      claimed[campaignId] = { ticker: formData.ticker, mint: mintKeypair.publicKey.toBase58() };
+      localStorage.setItem('claimedTokens', JSON.stringify(claimed));
 
       alert(`Token ${formData.ticker} launched successfully to sponsor ${campaignData?.name}!`);
       window.location.href = '/rescues';

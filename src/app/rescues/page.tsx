@@ -10,8 +10,13 @@ export default function RescuesPage() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCampaign, setSelectedCampaign] = useState<string | null>(null);
+  const [claimedLocal, setClaimedLocal] = useState<any>({});
 
   useEffect(() => {
+    // Check localStorage for tokens created in this session
+    const claimed = JSON.parse(localStorage.getItem('claimedTokens') || '{}');
+    setClaimedLocal(claimed);
+
     fetch('/api/campaigns')
       .then(res => res.json())
       .then(data => {
@@ -33,8 +38,8 @@ export default function RescuesPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {campaigns.map((camp) => {
-          const isClaimed = camp.tokens && camp.tokens.length > 0;
-          const token = isClaimed ? camp.tokens[0] : null;
+          const isClaimed = (camp.tokens && camp.tokens.length > 0) || !!claimedLocal[camp.id];
+          const token = isClaimed ? (claimedLocal[camp.id] || camp.tokens[0]) : null;
 
           return (
             <div key={camp.id} className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-accent/50 flex flex-col">
