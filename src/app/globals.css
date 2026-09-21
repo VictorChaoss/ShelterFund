@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Pure deep black/dark gray for high contrast */
+    --background: 330 10% 4%;
+    --foreground: 330 10% 98%;
+    
+    /* Slightly lighter cards */
+    --card: 330 10% 7%;
+    --card-foreground: 330 10% 98%;
+    
+    --popover: 330 10% 7%;
+    --popover-foreground: 330 10% 98%;
+    
+    --primary: 330 10% 98%;
+    --primary-foreground: 330 10% 4%;
+    
+    /* Secondary elements */
+    --secondary: 330 10% 12%;
+    --secondary-foreground: 330 10% 98%;
+    
+    /* Muted text/backgrounds */
+    --muted: 330 10% 12%;
+    --muted-foreground: 330 5% 65%;
+    
+    /* Vibrant Neon Pink */
+    --accent: 330 90% 60%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 330 10% 12%;
+    --input: 330 10% 12%;
+    --ring: 330 90% 60%;
+    --radius: 1rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-accent/30;
   }
 }

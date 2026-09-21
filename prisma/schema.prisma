@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Campaign {
+  id        String   @id @default(cuid())
+  name      String
+  shelter   String
+  goal      Float
+  raised    Float    @default(0)
+  image     String?
+  url       String?
+  tokens    Token[]
+  createdAt DateTime @default(now())
+}
+
+model Token {
+  mintAddress String   @id
+  name        String
+  ticker      String
+  campaignId  String
+  campaign    Campaign @relation(fields: [campaignId], references: [id])
+  volumeUsd   Float    @default(0)
+  createdAt   DateTime @default(now())
+}
