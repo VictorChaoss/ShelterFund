@@ -15,7 +15,7 @@ async function main() {
       goal: 5000,
       raised: 0,
       image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop",
-      url: "https://www.gofundme.com/f/help-save-my-dog-and-rebuild-my-life"
+      url: "https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life"
     },
     {
       id: 'gfm-maxwheel',
@@ -33,7 +33,7 @@ async function main() {
       goal: 1500,
       raised: 0,
       image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1000&auto=format&fit=crop",
-      url: "https://www.gofundme.com/f/help-save-my-dog"
+      url: "https://www.gofundme.com/f/help-save-my-dog-luna"
     }
   ];
 
