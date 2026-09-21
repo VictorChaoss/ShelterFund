@@ -16,13 +16,13 @@ export default function AnalyticsPage() {
         if (data.success) {
           setStats(data.data);
         } else {
-          // Fallback mock data if DB is empty
+          // Fallback if DB is empty
           setStats({
             totalCampaigns: 3,
-            totalTokens: 142,
-            totalRaised: 15420,
-            totalVolume: 385500,
-            totalClaims: 12000
+            totalTokens: 0,
+            totalRaised: 0,
+            totalVolume: 0,
+            totalClaims: 0
           });
         }
         setLoading(false);
@@ -30,10 +30,10 @@ export default function AnalyticsPage() {
       .catch(() => {
         setStats({
           totalCampaigns: 3,
-          totalTokens: 142,
-          totalRaised: 15420,
-          totalVolume: 385500,
-          totalClaims: 12000
+          totalTokens: 0,
+          totalRaised: 0,
+          totalVolume: 0,
+          totalClaims: 0
         });
         setLoading(false);
       });
@@ -112,16 +112,16 @@ export default function AnalyticsPage() {
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Top Performing Shelters</h3>
           <div className="flex-1 flex flex-col gap-4">
              <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30">
-               <span className="font-bold text-primary">Austin Pets Alive!</span>
-               <span className="text-accent font-mono">$15,420</span>
+               <span className="font-bold text-primary">Carla Ianni (Luna)</span>
+               <span className="text-accent font-mono">$0</span>
              </div>
              <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30 opacity-80">
-               <span className="font-bold text-primary">Local Humane Society</span>
-               <span className="text-accent font-mono">$8,100</span>
+               <span className="font-bold text-primary">Jaida Aliyah (Max)</span>
+               <span className="text-accent font-mono">$0</span>
              </div>
              <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30 opacity-60">
-               <span className="font-bold text-primary">Best Friends Animal Society</span>
-               <span className="text-accent font-mono">$3,200</span>
+               <span className="font-bold text-primary">Laura Lara Ruiz (Edi)</span>
+               <span className="text-accent font-mono">$0</span>
              </div>
           </div>
         </div>

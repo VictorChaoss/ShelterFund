@@ -70,36 +70,44 @@ export default function ExplorePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {tokens.map((token, index) => (
-                  <tr key={index} className="transition-colors hover:bg-secondary/20 group">
-                    <td className="px-6 py-4">
-                      {index === 0 ? <Trophy className="h-5 w-5 text-accent" /> : <span className="font-mono text-muted-foreground">#{index + 1}</span>}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center text-xs font-bold text-accent">
-                          {token.ticker}
-                        </div>
-                        <div>
-                          <p className="font-bold text-primary">{token.name}</p>
-                          <p className="text-xs text-muted-foreground font-mono">{token.mintAddress}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 font-mono text-primary flex items-center gap-2">
-                      <TrendingUp className="h-4 w-4 text-blue-500" />
-                      ${token.volumeUsd.toLocaleString()}
-                    </td>
-                    <td className="px-6 py-4 font-mono font-bold text-green-500">
-                      ${(token.volumeUsd * 0.04).toLocaleString()}
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-2.5 py-0.5 text-xs font-semibold text-accent group-hover:bg-accent group-hover:text-black transition-colors">
-                        {token.campaign.name}
-                      </span>
+                {tokens.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center text-muted-foreground">
+                      No coins have been launched yet. <a href="/rescues" className="text-accent hover:underline">Be the first to sponsor a rescue!</a>
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  tokens.map((token, index) => (
+                    <tr key={index} className="transition-colors hover:bg-secondary/20 group">
+                      <td className="px-6 py-4">
+                        {index === 0 ? <Trophy className="h-5 w-5 text-accent" /> : <span className="font-mono text-muted-foreground">#{index + 1}</span>}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center text-xs font-bold text-accent">
+                            {token.ticker}
+                          </div>
+                          <div>
+                            <p className="font-bold text-primary">{token.name}</p>
+                            <p className="text-xs text-muted-foreground font-mono">{token.mintAddress}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 font-mono text-primary flex items-center gap-2">
+                        <TrendingUp className="h-4 w-4 text-blue-500" />
+                        ${token.volumeUsd.toLocaleString()}
+                      </td>
+                      <td className="px-6 py-4 font-mono font-bold text-green-500">
+                        ${(token.volumeUsd * 0.04).toLocaleString()}
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-2.5 py-0.5 text-xs font-semibold text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                          {token.campaign.name}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
