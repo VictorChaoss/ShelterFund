@@ -13,9 +13,22 @@ export default function ExplorePage() {
     fetch('/api/leaderboard')
       .then(res => res.json())
       .then(data => {
+        let loadedTokens = [];
         if (data.success) {
-          setTokens(data.data);
+          loadedTokens = data.data;
         }
+
+        // Pull in the local tokens the user just deployed
+        const claimedLocal = JSON.parse(localStorage.getItem('claimedTokens') || '{}');
+        const customTokens = Object.keys(claimedLocal).map(campId => ({
+          name: claimedLocal[campId].ticker + " Coin",
+          ticker: claimedLocal[campId].ticker,
+          mintAddress: claimedLocal[campId].mint.slice(0, 10) + "...",
+          volumeUsd: 0,
+          campaign: { name: "Sponsored Rescue" }
+        }));
+
+        setTokens([...customTokens, ...loadedTokens]);
         setLoading(false);
       });
   }, []);

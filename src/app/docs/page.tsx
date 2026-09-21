@@ -11,13 +11,13 @@ export default function DocsPage() {
     },
     {
       icon: Coins,
-      title: "2. Launch on pump.fun",
-      description: "Upload your meme, name your coin, and deploy it through our interface. Under the hood, we hardcode the creator fee address to our platform's smart contract. You can't change it, and we can't steal it."
+      title: "2. Deploy Token-2022 Coin",
+      description: "Upload your meme and deploy an SPL Token-2022 coin. Under the hood, we hardcode the Transfer Fee extension to 4%. You can't change it, and we can't steal it."
     },
     {
       icon: ArrowRightLeft,
       title: "3. On-chain Claims & Swaps",
-      description: "As the coin trades, creator fees (SOL) accumulate. Our backend periodically claims these fees on-chain, automatically swapping them into USDC to preserve value."
+      description: "As the coin trades on Raydium/Orca, the 4% transfer fee automatically accumulates. Our backend periodically claims these fees on-chain, automatically swapping them into USDC."
     },
     {
       icon: FileCheck,
@@ -58,7 +58,7 @@ export default function DocsPage() {
       <div className="rounded-2xl bg-accent/10 p-8 text-center border border-accent/20">
         <h3 className="text-2xl font-bold text-primary mb-4">Example: $BELLA</h3>
         <p className="text-muted-foreground mb-6">
-          A user launches $BELLA to fund a $1,500 ACL surgery for a rescue dog. The coin goes viral and generates $50,000 in trading volume. 1% of that ($500) accumulates in creator fees. ShelterFund claims the $500, off-ramps it, pays the vet bill via Waggle, and posts the receipt here. Once the $1,500 goal is met, ongoing fees automatically roll over to the next dog in need.
+          A user launches $BELLA to fund a $1,500 ACL surgery for a rescue dog. The coin goes viral and generates $50,000 in trading volume. 4% of that ($2,000) accumulates in transfer fees. ShelterFund claims the $2,000, off-ramps it, pays the $1,500 vet bill via GoFundMe, and posts the on-chain receipt here. The remaining $500 automatically rolls over to the next dog in need.
         </p>
       </div>
     </div>
