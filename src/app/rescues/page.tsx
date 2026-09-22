@@ -6,17 +6,7 @@ import { useState, useEffect } from 'react';
 import { Loader2, ExternalLink, ShieldCheck, Rocket, HeartPulse, PawPrint } from 'lucide-react';
 import Link from 'next/link';
 
-const CAMPAIGN_URLS: Record<string, string> = {
-  'gfm-luna': 'https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life',
-  'gfm-maxwheel': 'https://www.gofundme.com/f/emergency-vet-fund-help-save-my-dog-from-a-serious-dental-a',
-  'gfm-edisurg': 'https://www.gofundme.com/f/help-save-my-dog-luna',
-  'gfm-bella-acl': 'https://www.gofundme.com/f/help-bella-get-her-acl-surgery',
-  'gfm-rocky-wheelchair': 'https://www.gofundme.com/f/wheelchair-for-rocky-paralyzed-rescue-pup',
-  'gfm-daisy-chemo': 'https://www.gofundme.com/f/daisys-fight-against-cancer',
-  'gfm-buddy-heartworm': 'https://www.gofundme.com/f/save-buddy-emergency-heartworm-treatment',
-  'gfm-coco-spine': 'https://www.gofundme.com/f/coco-needs-spinal-surgery-to-walk-again',
-  'gfm-max-rescue': 'https://www.gofundme.com/f/rescue-max-from-the-shelter',
-};
+const CAMPAIGN_URLS: Record<string, string> = {};
 
 export default function RescuesPage() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
@@ -124,15 +114,17 @@ export default function RescuesPage() {
 
                   {/* Actions */}
                   <div className="mt-6 flex flex-col gap-2">
-                    <a 
-                      href={gofundmeUrl}
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-border py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
-                    >
-                      <ExternalLink className="h-3.5 w-3.5" />
-                      View on GoFundMe
-                    </a>
+                    {gofundmeUrl && (
+                      <a 
+                        href={gofundmeUrl}
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl border border-border py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        View on GoFundMe
+                      </a>
+                    )}
 
                     {isClaimed ? (
                       <div className="flex items-center justify-center gap-2 rounded-xl border border-green-500/20 bg-green-500/5 py-2.5 text-xs font-bold text-green-400">
