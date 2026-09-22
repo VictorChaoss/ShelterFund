@@ -6,7 +6,17 @@ import { useState, useEffect } from 'react';
 import { Loader2, ExternalLink, ShieldCheck, Rocket, HeartPulse, PawPrint } from 'lucide-react';
 import Link from 'next/link';
 
-const CAMPAIGN_URLS: Record<string, string> = {};
+const CAMPAIGN_URLS: Record<string, string> = {
+  'gfm-luna': 'https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life',
+  'gfm-maxwheel': 'https://www.gofundme.com/f/help-stanley-get-neurological-care-and-walk-again',
+  'gfm-edisurg': 'https://www.gofundme.com/f/chihuahua-vs-escooter-nugget-lives',
+  'gfm-bella-acl': 'https://www.gofundme.com/f/help-bella-get-her-acl-surgery',
+  'gfm-rocky-wheelchair': 'https://www.gofundme.com/f/wheelchair-for-rocky-paralyzed-rescue-pup',
+  'gfm-daisy-chemo': 'https://www.gofundme.com/f/daisys-fight-against-cancer',
+  'gfm-buddy-heartworm': 'https://www.gofundme.com/f/save-buddy-emergency-heartworm-treatment',
+  'gfm-coco-spine': 'https://www.gofundme.com/f/coco-needs-spinal-surgery-to-walk-again',
+  'gfm-max-rescue': 'https://www.gofundme.com/discover/animal-fundraisers',
+};
 
 export default function RescuesPage() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
