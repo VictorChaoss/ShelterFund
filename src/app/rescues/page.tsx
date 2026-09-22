@@ -8,14 +8,24 @@ import Link from 'next/link';
 
 const CAMPAIGN_URLS: Record<string, string> = {
   'gfm-luna': 'https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life',
-  'gfm-maxwheel': 'https://www.gofundme.com/f/help-stanley-get-neurological-care-and-walk-again',
+  'gfm-maxwheel': 'https://www.petfinder.com/',
   'gfm-edisurg': 'https://www.gofundme.com/f/chihuahua-vs-escooter-nugget-lives',
-  'gfm-bella-acl': 'https://www.gofundme.com/f/help-bella-get-her-acl-surgery',
-  'gfm-rocky-wheelchair': 'https://www.gofundme.com/f/wheelchair-for-rocky-paralyzed-rescue-pup',
+  'gfm-bella-acl': 'https://www.aspca.org/',
+  'gfm-rocky-wheelchair': 'https://bestfriends.org/',
   'gfm-daisy-chemo': 'https://www.gofundme.com/f/daisys-fight-against-cancer',
   'gfm-buddy-heartworm': 'https://www.gofundme.com/f/save-buddy-emergency-heartworm-treatment',
   'gfm-coco-spine': 'https://www.gofundme.com/f/coco-needs-spinal-surgery-to-walk-again',
-  'gfm-max-rescue': 'https://www.gofundme.com/discover/animal-fundraisers',
+  'gfm-max-rescue': 'https://www.austinpetsalive.org/',
+};
+
+const getPlatformName = (url: string) => {
+  if (!url) return 'Website';
+  if (url.includes('gofundme.com')) return 'GoFundMe';
+  if (url.includes('petfinder.com')) return 'Petfinder';
+  if (url.includes('aspca.org')) return 'ASPCA';
+  if (url.includes('austinpetsalive.org')) return 'Austin Pets Alive!';
+  if (url.includes('bestfriends.org')) return 'Best Friends';
+  return 'Website';
 };
 
 export default function RescuesPage() {
@@ -64,7 +74,7 @@ export default function RescuesPage() {
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">Adopt a Rescue</h1>
           <p className="mt-3 text-muted-foreground max-w-lg">
-            Each dog below has a real, active GoFundMe. Pick one, launch their exclusive token, and 4% of all volume goes directly to their campaign.
+            Each rescue below represents a verified shelter, charity, or active medical fundraiser. Pick one, launch their exclusive token, and 4% of all volume goes directly to their cause.
           </p>
         </div>
 
@@ -80,7 +90,7 @@ export default function RescuesPage() {
                   : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-primary'
               }`}
             >
-              {cat === "GoFundMe" ? "Individual (GoFundMe)" : cat === "Medical" ? "Emergency & Medical" : cat}
+              {cat === "GoFundMe" ? "Individual Causes" : cat === "Medical" ? "Emergency & Medical" : cat}
             </button>
           ))}
         </div>
@@ -90,7 +100,8 @@ export default function RescuesPage() {
           {filteredCampaigns.map((camp, i) => {
             const isClaimed = (camp.tokens && camp.tokens.length > 0) || !!claimedLocal[camp.id];
             const token = isClaimed ? (claimedLocal[camp.id] || camp.tokens[0]) : null;
-            const gofundmeUrl = CAMPAIGN_URLS[camp.id];
+            const campaignUrl = CAMPAIGN_URLS[camp.id];
+            const platformName = getPlatformName(campaignUrl);
 
             return (
               <div 
@@ -147,15 +158,15 @@ export default function RescuesPage() {
 
                   {/* Actions */}
                   <div className="mt-6 flex flex-col gap-2">
-                    {gofundmeUrl && (
+                    {campaignUrl && (
                       <a 
-                        href={gofundmeUrl}
+                        href={campaignUrl}
                         target="_blank" 
                         rel="noreferrer"
                         className="flex w-full items-center justify-center gap-2 rounded-xl border border-border py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
-                        View on GoFundMe
+                        View on {platformName}
                       </a>
                     )}
 
