@@ -14,6 +14,7 @@ model Campaign {
   goal      Float
   raised    Float    @default(0)
   image     String
+  category  String   @default("GoFundMe")
   createdAt DateTime @default(now())
   tokens    Token[]
   claims    Claim[]

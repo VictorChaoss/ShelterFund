@@ -15,6 +15,7 @@ async function main() {
       goal: 5000,
       raised: 0,
       image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop",
+      category: "GoFundMe",
     },
     {
       id: 'gfm-maxwheel',
@@ -23,6 +24,7 @@ async function main() {
       goal: 2000,
       raised: 0,
       image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-edisurg',
@@ -31,6 +33,7 @@ async function main() {
       goal: 1500,
       raised: 0,
       image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-bella-acl',
@@ -39,6 +42,7 @@ async function main() {
       goal: 3500,
       raised: 0,
       image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-rocky-wheelchair',
@@ -47,6 +51,7 @@ async function main() {
       goal: 1200,
       raised: 0,
       image: "https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-daisy-chemo',
@@ -55,6 +60,7 @@ async function main() {
       goal: 8000,
       raised: 0,
       image: "https://images.unsplash.com/photo-1477884213360-7e9d7dcc8f9b?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-buddy-heartworm',
@@ -63,6 +69,7 @@ async function main() {
       goal: 2500,
       raised: 0,
       image: "https://images.unsplash.com/photo-1558788353-f76d92427f16?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-coco-spine',
@@ -71,6 +78,7 @@ async function main() {
       goal: 6000,
       raised: 0,
       image: "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?q=80&w=1000&auto=format&fit=crop",
+      category: "Medical",
     },
     {
       id: 'gfm-max-rescue',
@@ -79,6 +87,7 @@ async function main() {
       goal: 800,
       raised: 0,
       image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=1000&auto=format&fit=crop",
+      category: "Shelters",
     }
   ];
 

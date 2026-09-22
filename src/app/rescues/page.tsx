@@ -12,6 +12,7 @@ export default function RescuesPage() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [claimedLocal, setClaimedLocal] = useState<any>({});
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
     const claimed = JSON.parse(localStorage.getItem('claimedTokens') || '{}');
@@ -34,6 +35,11 @@ export default function RescuesPage() {
     );
   }
 
+  const categories = ["All", "Medical", "GoFundMe", "Shelters"];
+  const filteredCampaigns = activeCategory === "All" 
+    ? campaigns 
+    : campaigns.filter(c => c.category === activeCategory);
+
   return (
     <div className="relative">
       {/* Background glow */}
@@ -41,10 +47,10 @@ export default function RescuesPage() {
 
       <div className="relative mx-auto w-full max-w-7xl px-4 py-8 lg:px-6">
         {/* Header */}
-        <div className="mb-12 animate-fade-up">
+        <div className="mb-8 animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-xs font-medium text-accent mb-4">
             <HeartPulse className="h-3.5 w-3.5" />
-            {campaigns.length} Rescues Available
+            {filteredCampaigns.length} Rescues Available
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">Adopt a Rescue</h1>
           <p className="mt-3 text-muted-foreground max-w-lg">
@@ -52,16 +58,33 @@ export default function RescuesPage() {
           </p>
         </div>
 
+        {/* Filter Tabs */}
+        <div className="mb-8 flex flex-wrap gap-2 animate-fade-up delay-100">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                activeCategory === cat
+                  ? 'bg-accent text-accent-foreground glow-accent'
+                  : 'bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-primary'
+              }`}
+            >
+              {cat === "GoFundMe" ? "Individual (GoFundMe)" : cat === "Medical" ? "Emergency & Medical" : cat}
+            </button>
+          ))}
+        </div>
+
         {/* Campaign Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {campaigns.map((camp, i) => {
+          {filteredCampaigns.map((camp, i) => {
             const isClaimed = (camp.tokens && camp.tokens.length > 0) || !!claimedLocal[camp.id];
             const token = isClaimed ? (claimedLocal[camp.id] || camp.tokens[0]) : null;
-            const gofundmeUrl = CAMPAIGN_URLS[camp.id] || 'https://www.gofundme.com';
+            const gofundmeUrl = CAMPAIGN_URLS[camp.id];
 
             return (
               <div 
-                key={camp.id} 
+                key={camp.id}  
                 className={`animate-fade-up delay-${(i+1)*100} group relative overflow-hidden rounded-2xl border bg-card/50 transition-all flex flex-col ${
                   isClaimed 
                     ? 'border-green-500/20' 
