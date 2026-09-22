@@ -59,7 +59,6 @@ export default function AnalyticsPage() {
           </div>
           <div className="mt-4 flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">${stats.totalRaised.toLocaleString()}</span>
-            <span className="text-xs font-medium text-green-500 flex items-center"><ArrowUpRight className="h-3 w-3" /> 12%</span>
           </div>
         </div>
 
@@ -98,13 +97,11 @@ export default function AnalyticsPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        {/* Mock Chart Area */}
         <div className="rounded-2xl border border-border bg-card p-6 shadow-sm h-80 flex flex-col">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Volume Over Time (7d)</h3>
-          <div className="flex-1 rounded-xl border border-dashed border-border flex items-center justify-center bg-secondary/10">
-            <span className="text-sm text-muted-foreground flex items-center gap-2">
-              <Activity className="h-4 w-4" /> Chart Data Loading...
-            </span>
+          <div className="flex-1 rounded-xl border border-dashed border-border flex flex-col items-center justify-center bg-secondary/10 gap-2">
+            <Activity className="h-6 w-6 text-muted-foreground/30" />
+            <span className="text-sm text-muted-foreground">Charts will populate once tokens start trading.</span>
           </div>
         </div>
         

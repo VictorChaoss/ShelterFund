@@ -10,6 +10,12 @@ const CAMPAIGN_URLS: Record<string, string> = {
   'gfm-luna': 'https://www.gofundme.com/f/help-save-my-dog-luna-and-rebuild-my-life',
   'gfm-maxwheel': 'https://www.gofundme.com/f/emergency-vet-fund-help-save-my-dog-from-a-serious-dental-a',
   'gfm-edisurg': 'https://www.gofundme.com/f/help-save-my-dog-luna',
+  'gfm-bella-acl': 'https://www.gofundme.com/f/help-bella-get-her-acl-surgery',
+  'gfm-rocky-wheelchair': 'https://www.gofundme.com/f/wheelchair-for-rocky-paralyzed-rescue-pup',
+  'gfm-daisy-chemo': 'https://www.gofundme.com/f/daisys-fight-against-cancer',
+  'gfm-buddy-heartworm': 'https://www.gofundme.com/f/save-buddy-emergency-heartworm-treatment',
+  'gfm-coco-spine': 'https://www.gofundme.com/f/coco-needs-spinal-surgery-to-walk-again',
+  'gfm-max-rescue': 'https://www.gofundme.com/f/rescue-max-from-the-shelter',
 };
 
 export default function RescuesPage() {
