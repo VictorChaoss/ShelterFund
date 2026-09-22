@@ -1,13 +1,13 @@
 /* eslint-disable */
 // @ts-nocheck
-import { Heart, Coins, ArrowRightLeft, FileCheck, PawPrint, ShieldCheck } from 'lucide-react';
+import { Heart, Coins, ArrowRightLeft, FileCheck, PawPrint, ShieldCheck, MessageSquare, Search } from 'lucide-react';
 
 export default function DocsPage() {
   const steps = [
     {
       icon: Heart,
       title: "1. Pick a Rescue",
-      description: "Browse real, active GoFundMe campaigns for dogs needing surgery, wheelchairs, or emergency care. Each campaign is verified and linked directly to the original fundraiser."
+      description: "Browse real, active fundraisers and shelters for dogs needing surgery, wheelchairs, or emergency care. Each cause is verified and linked directly to the original campaign."
     },
     {
       icon: Coins,
@@ -22,7 +22,7 @@ export default function DocsPage() {
     {
       icon: FileCheck,
       title: "4. Fees Go to the Dog",
-      description: "The converted USDC is routed directly to the GoFundMe campaign organizer once they verify their identity through our Shelter Claim Portal. Every payout is logged with a public on-chain receipt."
+      description: "The converted USDC is routed directly to the campaign organizer or shelter. Every payout is logged with a public on-chain receipt."
     }
   ];
 
@@ -63,20 +63,45 @@ export default function DocsPage() {
           </div>
         </div>
 
+        {/* Transparency & Handoff */}
+        <div className="animate-fade-up delay-600 mb-12">
+          <h2 className="text-2xl font-bold tracking-tight text-primary sm:text-3xl mb-4 text-center">Transparency & The Donation Handoff</h2>
+          <div className="rounded-2xl border border-border bg-card/50 p-6 md:p-8 space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-accent" />
+                Direct Contact & Payout
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                When you launch a coin for a rescue, you're kickstarting a mission. Once the token generates enough fees, our team actively attempts to contact the organizers of the campaigns, GoFundMes, and shelters. We reach out directly to hand over the funds they've earned. Whether it's covering an individual dog's surgery or helping an operational shelter keep the lights on, we do the legwork to ensure the money reaches the cause.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2">
+                <Search className="h-5 w-5 text-accent" />
+                100% On-Chain Verification
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                We operate with complete transparency on the blockchain. Every cent generated from the 4% volume tax is publicly visible. Once a successful handoff is made, we publish the transaction receipt on our platform, linking the on-chain USDC transfer directly to the real-world campaign. You never have to trust us — you can always verify the receipts yourself.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Example */}
-        <div className="animate-fade-up delay-500 rounded-2xl bg-accent/5 p-8 text-center border border-accent/20 mb-12">
+        <div className="animate-fade-up delay-700 rounded-2xl bg-accent/5 p-8 text-center border border-accent/20 mb-12">
           <h3 className="text-2xl font-bold text-primary mb-4">Example: $BELLA</h3>
           <p className="text-muted-foreground mb-2 leading-relaxed text-sm max-w-2xl mx-auto">
-            A user launches $BELLA to fund a $1,500 ACL surgery for a rescue dog. The coin goes viral and generates $50,000 in trading volume. 4% of that ($2,000) accumulates in transfer fees. ShelterFund harvests the fees, converts to USDC, pays the $1,500 vet bill via GoFundMe, and posts the on-chain receipt. The remaining $500 rolls over to the next dog in need.
+            A user launches $BELLA to fund a $1,500 ACL surgery for a rescue dog. The coin goes viral and generates $50,000 in trading volume. 4% of that ($2,000) accumulates in transfer fees. ShelterFund harvests the fees, converts to USDC, contacts Bella's owner, pays the $1,500 vet bill, and posts the on-chain receipt. The remaining $500 rolls over to the next dog in need.
           </p>
           <p className="text-xs text-muted-foreground/50 mt-4">This is a hypothetical example for illustration purposes.</p>
         </div>
 
         {/* Trust section */}
-        <div className="grid gap-4 sm:grid-cols-3 mb-12">
+        <div className="grid gap-4 sm:grid-cols-3 mb-12 animate-fade-up delay-1000">
           {[
             { icon: ShieldCheck, title: "Immutable Fee", desc: "The transfer fee is hardcoded at token creation. Nobody can change or remove it." },
-            { icon: PawPrint, title: "Verified Campaigns", desc: "Every campaign links to a real, active GoFundMe with a real dog in need." },
+            { icon: PawPrint, title: "Verified Campaigns", desc: "Every cause links directly to a real charity, shelter, or active fundraiser." },
             { icon: FileCheck, title: "On-Chain Receipts", desc: "Every fee harvest and payout is recorded on the Solana blockchain forever." },
           ].map((item, i) => (
             <div key={i} className="rounded-2xl border border-border bg-card/50 p-6 text-center">
