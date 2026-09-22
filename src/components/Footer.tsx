@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="text-lg font-bold tracking-tight text-primary">ShelterFund</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Hijacking memecoin liquidity to fund real-world animal rescues. Built on Solana.
+              Repurposing memecoin liquidity to fund real-world animal rescues. Built on Solana.
             </p>
           </div>
 

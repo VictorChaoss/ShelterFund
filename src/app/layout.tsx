@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ShelterFund — Sponsor a Rescue. Launch a Coin.",
-  description: "Hijacking memecoin liquidity to fund real-world animal rescues. Built on Solana Token-2022.",
+  description: "Repurposing memecoin liquidity to fund real-world animal rescues. Built on Solana Token-2022.",
 };
 
 export default function RootLayout({

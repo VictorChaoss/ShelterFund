@@ -31,7 +31,7 @@ export default function DocsPage() {
       <div className="mb-12 text-center">
         <h1 className="text-3xl font-medium tracking-tight text-primary">The Manifesto</h1>
         <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-          The biggest runners in crypto history are animals. It's time to send something with actual meaning. We are hijacking memecoin liquidity to fund real-world animal rescues.
+          The biggest runners in crypto history are animals. It's time to send something with actual meaning. We are repurposing memecoin liquidity to fund real-world animal rescues.
         </p>
       </div>
 
