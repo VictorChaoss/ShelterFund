@@ -8,6 +8,7 @@ import { Trophy, TrendingUp, Search, Loader2 } from 'lucide-react';
 export default function ExplorePage() {
   const [tokens, setTokens] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch('/api/leaderboard')
@@ -33,11 +34,17 @@ export default function ExplorePage() {
       });
   }, []);
 
+  const filtered = tokens.filter(t => 
+    t.name.toLowerCase().includes(search.toLowerCase()) ||
+    t.ticker.toLowerCase().includes(search.toLowerCase()) ||
+    t.campaign?.name?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8 lg:px-6">
       <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <h1 className="text-3xl font-medium tracking-tight text-primary">Explore Coins</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-primary">Explore Coins</h1>
           <p className="mt-2 text-muted-foreground">
             The most heavily traded memecoins funding real-world animal rescues.
           </p>
@@ -46,7 +53,9 @@ export default function ExplorePage() {
           <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
           <input 
             type="text" 
-            placeholder="Search coins or shelters..." 
+            placeholder="Search coins or campaigns..." 
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-full border border-border bg-background py-2.5 pl-10 pr-4 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
           />
         </div>
@@ -70,14 +79,14 @@ export default function ExplorePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {tokens.length === 0 ? (
+                {filtered.length === 0 ? (
                   <tr>
                     <td colSpan={5} className="px-6 py-12 text-center text-muted-foreground">
-                      No coins have been launched yet. <a href="/rescues" className="text-accent hover:underline">Be the first to sponsor a rescue!</a>
+                      {search ? 'No coins match your search.' : 'No coins have been launched yet.'} <a href="/rescues" className="text-accent hover:underline">Be the first to sponsor a rescue!</a>
                     </td>
                   </tr>
                 ) : (
-                  tokens.map((token, index) => (
+                  filtered.map((token, index) => (
                     <tr key={index} className="transition-colors hover:bg-secondary/20 group">
                       <td className="px-6 py-4">
                         {index === 0 ? <Trophy className="h-5 w-5 text-accent" /> : <span className="font-mono text-muted-foreground">#{index + 1}</span>}
